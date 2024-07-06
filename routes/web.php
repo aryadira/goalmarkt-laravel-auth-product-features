@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -19,6 +20,12 @@ Route::get('/', function () {
 });
 
 Route::resource('verify', TwoFactorController::class);
+
+Route::get('/random', function () {
+    $otp = str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
+
+    dd($otp);
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

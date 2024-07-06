@@ -53,10 +53,11 @@ class LoginRequest extends FormRequest
 
         // inser code in data
         $user = User::where('email', $this->input('email'))->first();
-        $user->generateCode();
-
-        // send mail
-        $user->notify(new TwoFactorCode());
+        if ($user->status == 'unverified') {
+            $user->generateCode();
+            // send mail
+            $user->notify(new TwoFactorCode());
+        }
 
         RateLimiter::clear($this->throttleKey());
     }
