@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'code',
+        'expire_at'
     ];
 
     /**
@@ -43,5 +46,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function generateCode()
+    {
+        $this->timestamps = false;
+        $this->code = rand(1000, 9999);
+        $this->expire_at = now()->addMinute(15);
+        $this->save();
+    }
+
+    public function restCode()
+    {
+        $this->timestamps = false;
+        $this->code = null;
+        $this->expire_at = null;
+        $this->save();
+    }
+
+    public function routeNotificationForMail(Notification $notification): array|string
+    {
+        // Return email address only...
+        return $this->email;
     }
 }
