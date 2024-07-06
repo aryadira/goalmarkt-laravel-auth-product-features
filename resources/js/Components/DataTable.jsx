@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DataGrid, renderActionsCell } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import BasicMenu from "./BasicMenu";
 
 const columns = [
     { field: "id", headerName: "ID", flex: 1 },
@@ -14,14 +15,12 @@ const columns = [
     },
     {
         headerName: "Actions",
-        flex: 1,
+        flex: 2,
         renderCell: () => {
             return (
-                <div className="flex gap-2">
-                    <Button variant="contained">Action</Button>
-                    <Button variant="contained" className="ml-10">
-                        Action
-                    </Button>
+                <div className="flex gap-2 items-center w-full h-full">
+                    <Button variant="outlined">Product Detail</Button>
+                    <BasicMenu items={["Edit", "Delete"]}>Actions</BasicMenu>
                 </div>
             );
         },
@@ -32,7 +31,6 @@ export default function DataTable({ data }) {
     return (
         <div className="h-full max-h-max w-full">
             <DataGrid
-                className="w-full flex justify-between"
                 rows={data}
                 columns={columns}
                 initialState={{
