@@ -3,22 +3,36 @@ import { DataGrid, renderActionsCell } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 
 const columns = [
-    { field: "id", headerName: "ID" },
-    { field: "product_name", headerName: "Product Info" },
-    { field: "price", headerName: "Price" },
-    { field: "expiry_date", headerName: "Expiry Date", sortable: false },
+    { field: "id", headerName: "ID", flex: 1 },
+    { field: "product_name", headerName: "Product Info", flex: 1 },
+    { field: "price", headerName: "Price", flex: 1 },
+    {
+        field: "expiry_date",
+        headerName: "Expiry Date",
+        sortable: false,
+        minWidth: 200,
+    },
     {
         headerName: "Actions",
+        flex: 1,
         renderCell: () => {
-            return <Button variant="contained">Action</Button>;
+            return (
+                <div className="flex gap-2">
+                    <Button variant="contained">Action</Button>
+                    <Button variant="contained" className="ml-10">
+                        Action
+                    </Button>
+                </div>
+            );
         },
     },
 ];
 
 export default function DataTable({ data }) {
     return (
-        <div className="h-full max-h-max">
+        <div className="h-full max-h-max w-full">
             <DataGrid
+                className="w-full flex justify-between bg-red-100"
                 rows={data}
                 columns={columns}
                 initialState={{
@@ -28,7 +42,6 @@ export default function DataTable({ data }) {
                 }}
                 pageSizeOptions={[10, 20]}
                 autoHeight={true}
-                autosizing
                 checkboxSelection
             />
         </div>
