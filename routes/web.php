@@ -1,14 +1,12 @@
 <?php
 
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TwoFactorController;
-use App\Mail\SendEmail;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -21,15 +19,7 @@ Route::get('/', function () {
 
 Route::resource('verify', TwoFactorController::class);
 
-Route::get('/random', function () {
-    $otp = str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
-
-    dd($otp);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'two_factor'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth', 'verified', 'two_factor'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

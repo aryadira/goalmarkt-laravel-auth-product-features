@@ -16,8 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        $middleware->prependToGroup('two_factor', [
-            \App\Http\Middleware\TwoFactor::class
+        $middleware->alias([
+            'two_factor' => \App\Http\Middleware\TwoFactor::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
