@@ -32,7 +32,7 @@ export default function DataTable({ data }) {
     return (
         <div className="h-full max-h-max w-full">
             <DataGrid
-                className="w-full flex justify-between bg-red-100"
+                className="w-full flex justify-between"
                 rows={data}
                 columns={columns}
                 initialState={{
