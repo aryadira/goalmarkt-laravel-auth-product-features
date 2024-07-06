@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'code',
-        'expire_at'
+        'expire_at',
+        'status'
     ];
 
     /**
@@ -52,7 +53,7 @@ class User extends Authenticatable
     {
         $this->timestamps = false;
         $this->code = rand(1000, 9999);
-        $this->expire_at = now()->addMinute(15);
+        $this->expire_at = now()->addMinute(5);
         $this->save();
     }
 
@@ -61,6 +62,7 @@ class User extends Authenticatable
         $this->timestamps = false;
         $this->code = null;
         $this->expire_at = null;
+        $this->status = 'verified';
         $this->save();
     }
 

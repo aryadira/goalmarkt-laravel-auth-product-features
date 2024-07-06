@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('code')->nullable();
             $table->dateTime('expire_at')->nullable();
+            $table->enum('status', ['unverified', 'verified'])->default('unverified');
             $table->rememberToken();
             $table->timestamps();
         });

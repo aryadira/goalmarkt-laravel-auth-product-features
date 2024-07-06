@@ -12,15 +12,14 @@ class TwoFactor
     {
         $user = auth()->user();
 
-        if (auth()->check() && $user->code) {
-            if ($user->code != null) {
-                return redirect()->route('dashboard');
-            }
-            if (!$request->is('verify*')) {
-                return redirect()->route('verify.index');
+        if ($user->status === "unverified") {
+            if (auth()->check() && $user->code) {
+                if (!$request->is('verify*')) {
+                    return redirect()->route('verify.index');
+                }
+
             }
         }
-
 
         return $next($request);
     }
