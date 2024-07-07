@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -11,25 +14,36 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return inertia('Dashboard', [
+        return Inertia::render('ProductDashboard', [
             'products' => $products
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return Inertia::render('AddProduct');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->validated();
+        $user = Auth::user();
+
+        $product = Product::create([
+            'product_name' => $data['product_name'],
+            'selling_price' => $data['selling_price'],
+            'description' => $data['description'],
+            'product_condition' => $data['product_condition'],
+            'product_size' => $data['product_size'],
+            'user_id' => $user->id
+        ]);
+
+        return redirect(route('dashboard', [
+            'product' => $product
+        ]));
     }
 
     /**

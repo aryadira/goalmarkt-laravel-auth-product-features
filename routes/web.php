@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::resource('verify', TwoFactorController::class);
 
 Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth', 'verified', 'two_factor'])->name('dashboard');
+Route::get('/products/add', [ProductController::class, 'create'])->middleware(['auth', 'verified', 'two_factor'])->name('product.create');
+Route::post('/products/add', [ProductController::class, 'store'])->middleware(['auth', 'verified', 'two_factor']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

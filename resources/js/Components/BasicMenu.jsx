@@ -21,6 +21,7 @@ export default function BasicMenu({ items, children }) {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
+                variant="outlined"
             >
                 {children}
             </Button>
