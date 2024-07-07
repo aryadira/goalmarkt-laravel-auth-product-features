@@ -4,53 +4,72 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { Button, ButtonBase } from "@mui/material";
 
+const currencyFormatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+});
+
+const idrPrice = {
+    type: "number",
+    valueFormatter: (value) => currencyFormatter.format(value),
+    cellClassName: "font-tabular-nums",
+};
+
 const columns = [
     {
         field: "id",
         headerName: "ID",
         resizable: false,
+        hideable: false,
+        flex:1,
         maxWidth: 40,
-        flex: 1,
     },
     {
         field: "no_resi",
         headerName: "No. Resi",
         resizable: false,
+        hideable: false,
+        flex:1,
         minWidth: 120,
-        flex: 1,
     },
     {
         field: "product_name",
         headerName: "Product Info",
         resizable: false,
+        hideable: false,
+        flex:1,
         minWidth: 120,
-        flex: 2,
-    },
-    {
-        field: "selling_price",
-        headerName: "Selling Price",
-        resizable: false,
-        minWidth: 120,
-        flex: 1,
     },
     {
         field: "product_condition",
         headerName: "Condition",
         resizable: false,
+        hideable: false,
+        flex:1,
         minWidth: 120,
-        flex: 2,
     },
     {
         field: "product_size",
         headerName: "Size",
         resizable: false,
+        hideable: false,
+        flex:1,
         minWidth: 120,
-        flex: 1,
+    },
+    {
+        field: "selling_price",
+        headerName: "Selling Price",
+        resizable: false,
+        hideable: false,
+        flex:1,
+        minWidth: 120,
+        ...idrPrice,
     },
     {
         headerName: "Actions",
         resizable: false,
-        flex: 3,
+        hideable: false,
+        flex: 2,
         renderCell: () => {
             return (
                 <div className="flex gap-2 items-center w-full h-full">

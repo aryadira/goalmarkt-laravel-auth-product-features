@@ -204,15 +204,3 @@ export default function AddProduct({ auth }) {
         </AuthenticatedLayout>
     );
 }
-
-// <Button
-//     fullWidth
-//     variant="contained"
-//     sx={{
-//         p: 2,
-//         bgcolor: "#9FCC86",
-//     }}
-//     disabled={processing}
-// >
-//     Submit
-// </Button>;
