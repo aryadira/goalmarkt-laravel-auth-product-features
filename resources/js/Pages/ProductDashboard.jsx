@@ -5,20 +5,51 @@ import { Head, Link } from "@inertiajs/react";
 import { Button, ButtonBase } from "@mui/material";
 
 const columns = [
-    { field: "id", headerName: "ID", flex: 1 },
-    { field: "no_resi", headerName: "No. Resi", flex: 1 },
-    { field: "product_name", headerName: "Product Info", flex: 1 },
-    { field: "selling_price", headerName: "Selling Price", flex: 1 },
-    { field: "product_condition", headerName: "Condition", flex: 1 },
-    { field: "product_size", headerName: "Size", flex: 1 },
     {
-        field: "expiry_date",
-        headerName: "Expiry Date",
-        sortable: false,
-        minWidth: 200,
+        field: "id",
+        headerName: "ID",
+        resizable: false,
+        maxWidth: 40,
+        flex: 1,
+    },
+    {
+        field: "no_resi",
+        headerName: "No. Resi",
+        resizable: false,
+        minWidth: 120,
+        flex: 1,
+    },
+    {
+        field: "product_name",
+        headerName: "Product Info",
+        resizable: false,
+        minWidth: 120,
+        flex: 2,
+    },
+    {
+        field: "selling_price",
+        headerName: "Selling Price",
+        resizable: false,
+        minWidth: 120,
+        flex: 1,
+    },
+    {
+        field: "product_condition",
+        headerName: "Condition",
+        resizable: false,
+        minWidth: 120,
+        flex: 2,
+    },
+    {
+        field: "product_size",
+        headerName: "Size",
+        resizable: false,
+        minWidth: 120,
+        flex: 1,
     },
     {
         headerName: "Actions",
+        resizable: false,
         flex: 3,
         renderCell: () => {
             return (
