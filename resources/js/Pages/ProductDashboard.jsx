@@ -1,7 +1,7 @@
 import BasicMenu from "@/Components/BasicMenu";
 import DataTable from "@/Components/DataTable";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { Button, ButtonBase } from "@mui/material";
 
 const columns = [
@@ -11,7 +11,6 @@ const columns = [
     { field: "selling_price", headerName: "Selling Price", flex: 1 },
     { field: "product_condition", headerName: "Condition", flex: 1 },
     { field: "product_size", headerName: "Size", flex: 1 },
-    { field: "description", headerName: "Description", flex: 1 },
     {
         field: "expiry_date",
         headerName: "Expiry Date",
@@ -20,7 +19,7 @@ const columns = [
     },
     {
         headerName: "Actions",
-        flex: 2,
+        flex: 3,
         renderCell: () => {
             return (
                 <div className="flex gap-2 items-center w-full h-full">
@@ -50,7 +49,11 @@ export default function ProductDashboard({ products, auth }) {
                         <div className="w-full flex justify-between items-center p-5">
                             <div className="text-gray-900">Product List</div>
                             <div>
-                                <Button variant="contained">Add Product</Button>
+                                <Link href="/products/create">
+                                    <Button variant="contained">
+                                        Add Product
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
 

@@ -33,12 +33,13 @@ class ProductController extends Controller
         $user = Auth::user();
 
         $product = Product::create([
+            'user_id' => $user->id,
+            'no_resi' => Product::generateNoResi(),
             'product_name' => $data['product_name'],
             'selling_price' => $data['selling_price'],
             'description' => $data['description'],
             'product_condition' => $data['product_condition'],
             'product_size' => $data['product_size'],
-            'user_id' => $user->id
         ]);
 
         return redirect(route('dashboard', [

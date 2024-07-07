@@ -1,7 +1,5 @@
 import * as React from "react";
-import { DataGrid, renderActionsCell } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
-import BasicMenu from "./BasicMenu";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function DataTable({ data, columns }) {
     return (

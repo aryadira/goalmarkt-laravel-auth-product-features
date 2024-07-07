@@ -1,3 +1,5 @@
+import InputError from "@/Components/InputError";
+import PrimaryButton from "@/Components/PrimaryButton";
 import SelectOption from "@/Components/SelectOption";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -60,7 +62,7 @@ export default function AddProduct({ auth }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("product.store"));
+        post(route("products.store"));
     };
 
     return (
@@ -92,6 +94,7 @@ export default function AddProduct({ auth }) {
                                         id="filled-size-normal"
                                         variant="outlined"
                                         name="product_name"
+                                        required
                                         onChange={(e) =>
                                             setData(
                                                 "product_name",
@@ -104,7 +107,6 @@ export default function AddProduct({ auth }) {
                                         id="filled-select-condition"
                                         select
                                         label="Select Condition"
-                                        defaultValue="New Brand With Tags"
                                         helperText="Please select your product conditions"
                                         variant="outlined"
                                         name="product_condition"
@@ -156,21 +158,20 @@ export default function AddProduct({ auth }) {
                                         id="filled-select-size"
                                         select
                                         label="Select Size"
-                                        defaultValue="M"
                                         helperText="Please select your product size"
                                         variant="outlined"
                                         name="product_size"
+                                        onChange={(e) =>
+                                            setData(
+                                                "product_size",
+                                                e.target.value
+                                            )
+                                        }
                                     >
                                         {productSizes.map((size) => (
                                             <MenuItem
                                                 key={size.value}
-                                                value={data.product_size}
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "product_size",
-                                                        e.target.value
-                                                    )
-                                                }
+                                                value={size.value}
                                             >
                                                 {size.value}
                                             </MenuItem>
@@ -180,7 +181,7 @@ export default function AddProduct({ auth }) {
                                         value={data.selling_price}
                                         fullWidth
                                         label="Price"
-                                        id="fullWidth"
+                                        id="selling_price"
                                         type="number"
                                         name="selling_price"
                                         onChange={(e) =>
@@ -192,20 +193,26 @@ export default function AddProduct({ auth }) {
                                     />
                                 </div>
                             </div>
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                sx={{
-                                    p: 2,
-                                    bgcolor: "#9FCC86",
-                                }}
-                            >
-                                Submit
-                            </Button>
                         </FormControl>
+
+                        <PrimaryButton className="ms-4" disabled={processing}>
+                            Submit
+                        </PrimaryButton>
                     </form>
                 </div>
             </div>
         </AuthenticatedLayout>
     );
 }
+
+// <Button
+//     fullWidth
+//     variant="contained"
+//     sx={{
+//         p: 2,
+//         bgcolor: "#9FCC86",
+//     }}
+//     disabled={processing}
+// >
+//     Submit
+// </Button>;
