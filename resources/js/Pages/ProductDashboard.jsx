@@ -107,7 +107,7 @@ export default function ProductDashboard({ products, auth }) {
                             </div>
                         </div>
 
-                        <DataTable data={products} columns={columns} />
+                        <DataTable resData={products} resColumns={columns} />
                     </div>
                 </div>
             </div>

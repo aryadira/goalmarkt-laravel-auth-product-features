@@ -24,6 +24,7 @@
         "@emotion/styled": "^11.11.5",
         "@mui/material": "^5.16.0",
         "@mui/x-data-grid": "^7.9.0",
+        "@mui/x-data-grid-generator": "^7.9.0",
         "heroicons": "^2.1.4"
     }
 }
