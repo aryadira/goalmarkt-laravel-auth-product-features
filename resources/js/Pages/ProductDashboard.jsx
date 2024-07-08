@@ -91,7 +91,7 @@ export default function ProductDashboard({ products, auth }) {
                 </h2>
             }
         >
-            <Head title="Dashboard" />
+            <Head title="Product Dashboard" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
